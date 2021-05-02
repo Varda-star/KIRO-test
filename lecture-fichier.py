@@ -1,4 +1,4 @@
-import pandas as pd
+import pandas as pd 
 import os
 df_nodes_nice=pd.read_csv(os.path.join("nice","nodes.csv"), sep=";")
 df_nodes_paris=pd.read_csv(os.path.join("paris","nodes.csv"), sep=";")
