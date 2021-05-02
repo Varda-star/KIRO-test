@@ -1,4 +1,4 @@
-"""
+
 class Reseau(object):
     def __init__(self, list_nodes, distribution):
         assert len(list_nodes)<=30
