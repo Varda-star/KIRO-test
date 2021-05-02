@@ -6,4 +6,5 @@ df_nodes_grenoble=pd.read_csv(os.path.join("grenoble","nodes.csv"), sep=";")
 df_distance_nice=pd.read_csv(os.path.join("nice","distances.csv"), sep=";")
 df_distance_paris=pd.read_csv(os.path.join("paris","distances.csv"), sep=";")
 df_distance_grenoble=pd.read_csv(os.path.join("grenoble","distances.csv"), sep=";")
-def ville
+def ville():
+    
