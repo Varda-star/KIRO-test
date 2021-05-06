@@ -2,17 +2,24 @@ import pandas as pd
 import os
 df_nodes_nice=pd.read_csv(os.path.join("nice","nodes.csv"), sep=";")
 df_nodes_paris=pd.read_csv(os.path.join("paris","nodes.csv"), sep=";")
-df_nodes_grenoble=pd.read_csv(os.path.join("grenoble","nodes.csv"), sep=";")
+","nodes.csv"), sep=";")
 df_distance_nice=pd.read_csv(os.path.join("nice","distances.csv"), sep=";")
 df_distance_paris=pd.read_csv(os.path.join("paris","distances.csv"), sep=";")
 df_distance_grenoble=pd.read_csv(os.path.join("grenoble","distances.csv"), sep=";")
 def ville():
     
+<<<<<<< HEAD
  
 class Reseau(object):
     def __init__(self, list_nodes, distribution):
         assert len(list_nodes)<=30
         assert df_nodes.iloc[distribution, 2]=="distribution"
+=======
+class Reseau(object):
+    def __init__(self, list_nodes, distribution):
+        assert len(list_nodes)<=30
+        assert df_nodes_paris[distribution, 2]=="distribution"
+>>>>>>> Karel
         self.list_nodes=list_nodes
         self.distribution= distribution
 
@@ -46,8 +53,26 @@ class Reseau(object):
              for j in range(0,m):
                  l.append ( self.list_nodes[i][j])               
         return l
+<<<<<<< HEAD
                  
   
         
 m=Reseau([[1,3],[5],[2,6,4]],7)
    
+=======
+    
+
+def creation_architecture(df_nodes_paris, df_distance_paris):
+    l=[False for i in range(len(df_nodes_paris)]
+    df_nodes_paris["visited"]=l
+    while False in df_nodes_paris["visited"]:
+        
+
+
+        
+
+
+
+        
+m=Reseau([[1,3],[5],[2,6,4]],7)
+>>>>>>> Karel
