@@ -60,8 +60,8 @@ def contraintes2(trains, data):
     return T
 
 
-def indicatriceq(s):
-    if q == 'notAffected':
+def indicatriceq(i, s):
+    if s[i]["voieAQuai"] == 'notAffected':
         return 1
     return 0
 
@@ -74,12 +74,11 @@ def indicatriceq(s):
 #     return elements
 
 
-def indicatricej(J, s):
-    for j in J:
-        for k, l in enumerate(s):
-            if {int(k), int(l)} == {j[0], j[2]}:
-                if int(s[k]['itineraire']) == j[1] and int(s[l]['itineraire']) == j[3]:
-                    return 1
+def indicatricej(j, s):
+    for k, l in enumerate(s):
+        if {int(k), int(l)} == {j[0], j[2]}:
+            if int(s[k]['itineraire']) == j[1] and int(s[l]['itineraire']) == j[3]:
+                return 1
     return 0
 
 
@@ -104,3 +103,12 @@ def contrainte3(solution, data, liste_contrainte):
                         return False
 
     return True
+
+
+def cout(s, J, cout_vide):
+    somme = 0
+    for i in s:
+        somme += indicatriceq(i, s)*cout_vide
+    for j in J:
+        somme += indicatricej(j, s)*j[4]
+    return somme
