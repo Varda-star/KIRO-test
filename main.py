@@ -112,3 +112,24 @@ def cout(s, J, cout_vide):
     for j in J:
         somme += indicatricej(j, s)*j[4]
     return somme
+
+
+def solution(data, J):
+    resultat = {}
+    itineraire = data['itineraire']
+    trains = list_trains(data)
+    compatibilite = {compatibilite[train['id']] = ["notAffected"] for train in trains}
+    for i in itineraire:
+        for train in trains:
+            if train['voiesAQuai'] == i['voiesAQuai'] and train['voiesEnLigne'] == i['voiesEnLigne'] and train['sensDepart'] == i['sensDepart']:
+                compatibilite[train['id']].append(i)
+
+    # for group in data['trains']:
+    #     resultat[group]
+    #     for k in group:
+    #         posssibilite = set(compatibilite[k['id']])
+    #         for j in J:
+    #             if k['id'] in {j[0], j[2]}:
+    #                 for element in posssibilite:
+    #                     if element['id'] in {j[1], j[3]}:
+    #                         posssibilite = posssibilite - {element}
