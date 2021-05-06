@@ -82,8 +82,8 @@ def indicatricej(j, s):
     return 0
 
 
-def contrainte3(solution, data, liste_contrainte):
-
+def contrainte3(solution, data):
+    liste_contrainte = data['interdictionsQuais']
     list_train = [get_train(int(id), list_trains(data)) for id in solution]
     #print (list_train)
     for i in range(len(list_train)):
@@ -116,20 +116,49 @@ def cout(s, J, cout_vide):
 
 def solution(data, J):
     resultat = {}
-    itineraire = data['itineraire']
+    itineraire = set(data['itineraire'])
+
     trains = list_trains(data)
     compatibilite = {compatibilite[train['id']] = ["notAffected"] for train in trains}
+
     for i in itineraire:
         for train in trains:
             if train['voiesAQuai'] == i['voiesAQuai'] and train['voiesEnLigne'] == i['voiesEnLigne'] and train['sensDepart'] == i['sensDepart']:
                 compatibilite[train['id']].append(i)
 
-    # for group in data['trains']:
-    #     resultat[group]
-    #     for k in group:
-    #         posssibilite = set(compatibilite[k['id']])
-    #         for j in J:
-    #             if k['id'] in {j[0], j[2]}:
-    #                 for element in posssibilite:
-    #                     if element['id'] in {j[1], j[3]}:
-    #                         posssibilite = posssibilite - {element}
+    for group in data['trains']:
+        # initialisation
+
+        cout_vide = 2000 * len(group)
+
+        for el in set(compatibilite[group[0]['id']]):
+            if el != 'notAffected':
+                resultat[group[0]['id']] = {
+                    'voiesAQuai': el['voiesAQuai'], 'itineraire': el['id']}
+
+                if contrainte3(resultat):
+
+                    # eliminattion
+
+                    itineraire = itineraire - {el}
+
+                    break
+
+        if resultat == {}:
+            resultat = {k['id']: {'voiesAQuai': 'notAffected',
+                                  'itineraire': 'notAffected'} for k in group}
+            continue
+
+        q_group = resultat[group[0]['id']]['voiesAQuai']
+        for k in group:
+            if k['id'] != group[0]['id']:
+
+                # contrainte 2
+                posssibilite = set(
+                    [_ for _ in compatibilite[k['id']] if q_group == comp['voiesAQuai']])
+
+                for j in J:
+                    if k['id'] in {j[0], j[2]}:
+                        for element in posssibilite:
+                            if element['id'] in {j[1], j[3]}:
+                                posssibilite = posssibilite - {element}
