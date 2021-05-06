@@ -6,6 +6,14 @@ def get_itin(i, data):
             return k
 
 
+def list_trains(data):
+    L = []
+    for i in data["trains"]:
+        for j in i:
+            L.append(j)
+    return L
+
+
 def get_train(i, L):
     for k in L:
         if k["id"] == i:
@@ -46,25 +54,3 @@ def indicatricej(J, s):
                 if int(s[k]['itineraire']) == j[1] and int(s[l]['itineraire']) == j[3]:
                     return 1
     return 0
-
-
-def contraite3(solution, data, liste_contrainte):
-
-    list_train = [get_train[id, data] for id in solution]
-
-    for i in range(len(List_train)):
-        if (list_train[i][0].get("id") in solution):
-
-            for j in range(len(list_contraite_quai)):
-                if (solution[list_train[i]['id']].get("voieAQuai") in list_contraite_quai[j].get("voiesAQuaiInterdites")):
-
-                    if((List_train[i].get(list_train[i].get("id"))).get("voieAQuai") in list_contraite_quai[j].get("voiesEnLigne")):
-                        return False
-
-                    if (List_train[i].get("typesMateriels") in list_contraite_quai[j].get("typesMateriels")):
-                        return False
-
-                    if (List_train[i].get("typeCirculation") in list_contraite_quai[j].get("typesCirculation")):
-                        return False
-
-    return True
