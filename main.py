@@ -56,15 +56,15 @@ def contraite3(solution, data, liste_contrainte):
         if (list_train[i][0].get("id") in solution):
 
             for j in range(len(list_contraite_quai)):
-                if (slolution.get("voieAQuai") in list_contraite_quai[j].get("voiesAQuaiInterdites")):
+                if (solution[list_train[i]['id']].get("voieAQuai") in list_contraite_quai[j].get("voiesAQuaiInterdites")):
 
-                    if((List_train[i][0].get(list_train[i][0].get("id"))).get("voieAQuai") in list_contraite_quai[j].get("voiesEnLigne")):
+                    if((List_train[i].get(list_train[i].get("id"))).get("voieAQuai") in list_contraite_quai[j].get("voiesEnLigne")):
                         return False
 
-                    if (List_train[i][0].get("typesMateriels")[0] in list_contraite_quai[j].get("typesMateriels")):
+                    if (List_train[i].get("typesMateriels") in list_contraite_quai[j].get("typesMateriels")):
                         return False
 
-                    if (List_train[i][0].get("typeCirculation") in list_contraite_quai[j].get("typesCirculation")):
+                    if (List_train[i].get("typeCirculation") in list_contraite_quai[j].get("typesCirculation")):
                         return False
 
     return True
